@@ -1,0 +1,46 @@
+{% extends 'spendoApp/index.html' %}
+
+{% block content %}
+
+    
+    <div class="container m-5">
+
+    {% if messages %}
+        <div class="alert alert-success">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if categories %}
+        <h1>{{Categories.objects.count}}</h1>
+        <a href="{% url 'spendoApp:categoryAgregarForm' %}" class="btn btn-success mb-4">Crear nueva categoría</a>
+        <table class="table table-bordered table-striped table-hover text-center">
+                <tr>
+                    <thead>
+                        <th>Nombre</th>
+                        <th>Medida</th>
+                        <th>Acciones</th>
+                    </thead>
+                </tr>
+            {% for category in categories %}
+            <tr>
+                <td>
+                {{category.nombre}}
+                </td>
+                <td>
+                    {{category.medida}}
+                </td>
+                <td>                    
+                    <a href="{% url 'spendoApp:category' category.id %}" class="btn btn-primary"> Ver </a>
+                    <a href="{% url 'spendoApp:categoryDelete' category.id %}" class="btn btn-danger" onclick="confirm('¿Estás seguro?')"> Eliminar </a>
+                </td>
+            </tr>      
+            {% endfor %}   
+        </table>   
+        {% else %}
+        <p>No categories are available.</p>
+        {% endif %}       
+    </div>
+{% endblock %}

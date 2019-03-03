@@ -1,0 +1,28 @@
+{% extends 'spendoApp/index.html' %}
+
+{% block content %}
+    {% if category %}
+        <table class="table table-striped table-hover table-bordered mt-5">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Medida</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>
+                        {{ category.nombre }}
+                    </td>
+                    <td>
+                        {{ category.medida }}
+                    </td>                
+                </tr>
+            </tbody>
+        </table>
+    {% else %}
+        <p class="alert alert-danger">No categories are available.</p>
+    {% endif %}       
+    </div>
+{% endblock %}
