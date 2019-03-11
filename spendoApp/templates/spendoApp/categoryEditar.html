@@ -1,0 +1,21 @@
+{% extends 'spendoApp/index.html' %}
+
+{% block content %}
+   
+    <div class="form-group mt-5">
+        <h3 class="mb-3">Editar category: {{category.nombre}}</h3>
+
+        <form action="{% url 'spendoApp:categoryUpdate' category.id%}" method="POST" class="mt-5">
+            {% csrf_token %}
+            <label for="name">Nombre de categoría</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ category.nombre }}">
+
+            <label for="medida">Medida</label>
+            <input type="text" class="form-control" id="medida" name="medida" value="{{ category.medida }}">
+
+            <button class="btn btn-success mt-3" >Actualizar</button>
+        </form>
+
+    </div>
+    
+{% endblock %}

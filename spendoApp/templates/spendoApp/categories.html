@@ -1,10 +1,13 @@
 {% extends 'spendoApp/index.html' %}
+{% load static %}
+
+{% block titulo %} Categories index {% endblock %}
 
 {% block content %}
-
-    
     <div class="container m-5">
-
+    <div class="image text-center">
+        <img  src="{% static 'spendoApp/images/img.jpg' %}" alt="cato" style="width: 300px">
+    </div>
     {% if messages %}
         <div class="alert alert-success">
             {% for message in messages %}
@@ -34,13 +37,14 @@
                 </td>
                 <td>                    
                     <a href="{% url 'spendoApp:category' category.id %}" class="btn btn-primary"> Ver </a>
-                    <a href="{% url 'spendoApp:categoryDelete' category.id %}" class="btn btn-danger" onclick="confirm('¿Estás seguro?')"> Eliminar </a>
+                    <a href="{% url 'spendoApp:categoryUpdateForm' category.id %}" class="btn btn-warning"> Actualizar </a>
+                    <a href="javascript: if(eliminar()) location.href=' {% url 'spendoApp:categoryDelete' category.id %}'" class="btn btn-danger"> Eliminar </a>    
                 </td>
             </tr>      
             {% endfor %}   
         </table>   
         {% else %}
-        <p>No categories are available.</p>
+        <p class="no-categories">No categories are available.</p>
         {% endif %}       
     </div>
 {% endblock %}
